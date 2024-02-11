@@ -6,6 +6,20 @@ $primary-text-color: #7C6A0A;
 $font-stack: 'IBM Plex Sans', sans-serif;
 $paragraph-size: 1.5em;
 
+@mixin flexCenter($direction, $content, $align){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $content;
+    align-items: $align;
+}
+
+@mixin buttonStyle {
+    button {
+        background: none;
+        border-style: none;
+    }
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -15,8 +29,7 @@ body {
 
 nav {
     width: auto;
-    display: flex;
-    justify-content: space-between;
+    @include flexCenter(row, space-between, center);
     color: $primary-text-color;
     padding: 15px;
 
@@ -28,12 +41,7 @@ nav {
     .icons {
         display: flex;
         gap: 15px;
-
-        button {
-            background: none;
-            border-style: none;
-
-        }
+        @include buttonStyle;
     }
 
 }
@@ -42,15 +50,13 @@ nav {
 article {
     width: auto;
     color: $primary-text-color;
+    @include flexCenter(row, space-between, center);
     padding-left: 45px;
     padding-right: 45px;
     padding-top: 70px;
-    display: flex;
-    justify-content: space-between;
 
     .impact-section {
-        display: flex;
-        flex-direction: column;
+        @include flexCenter(column, space-evenly, flex-start);
         padding-top: 50px;
         gap: 25px;
     }
@@ -65,11 +71,12 @@ article {
         font-size: $paragraph-size;
     }
 
+    @include buttonStyle;
+
     button {
         width: 12vw;
         padding: 20px;
         background-color: $quaternary-color;
-        border-style: none;
         border-radius: 35px;
         color: white;
         font-size: $paragraph-size;
@@ -101,12 +108,10 @@ section {
         }
 
         .card-section{
-            display: flex;
+            @include flexCenter(row, center, center);
             width: auto;
             height: auto;
-            justify-content: center;
             flex-wrap: wrap;
-            align-items: center;
             column-gap: 200px;
             row-gap: 80px;
         }
